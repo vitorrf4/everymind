@@ -49,7 +49,7 @@ public class ProdutoController {
 
     @PutMapping
     public ResponseEntity<Produto> updateProduto(@RequestBody Produto produto) {
-        if (validaProduto.camposSaoInvalidos(produto) || produto.getCodigo() == null )
+        if (validaProduto.camposSaoInvalidos(produto) || produto.getCodigo() == null)
             return ResponseEntity.badRequest().build();
 
         if (!repository.existsById(produto.getCodigo()))

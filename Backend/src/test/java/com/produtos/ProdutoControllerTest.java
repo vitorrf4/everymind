@@ -21,6 +21,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
@@ -99,10 +100,49 @@ public class ProdutoControllerTest {
 
         @Test
         @DisplayName("POST /produtos - Bad Request")
-        void whenCreateProduto_givenInvalidProduto_thenReturnBadRequest() {
+        void whenCreateProduto_givenNullProduto_thenReturnBadRequest() {
             when(validaProduto.camposSaoInvalidos(isNull())).thenReturn(true);
 
             var response = produtoController.createProduto(null);
+
+            assertEquals(HttpStatus.BAD_REQUEST, response.getStatusCode());
+        }
+    }
+
+    @Nested
+    class PutEndpoints {
+        @Test
+        @DisplayName("PUT /produtos - No Content")
+        void whenUpdateProduto_thenReturnNoContent() {
+            Produto updatedProduto = new Produto("nome alterado", "desc alterada", 20.0);
+            ReflectionTestUtils.setField(updatedProduto, "codigo", 1L);
+
+            when(produtoRepository.existsById(1L)).thenReturn(true);
+
+            var response = produtoController.updateProduto(updatedProduto);
+
+            assertEquals(HttpStatus.NO_CONTENT, response.getStatusCode());
+        }
+
+        @Test
+        @DisplayName("PUT /produtos - Not Found")
+        void whenUpdateProduto_givenInexistentProduto_thenReturnNotFound() {
+            Produto produto = new Produto("teste nome", "teste desc", 10.0);
+            ReflectionTestUtils.setField(produto, "codigo", 1L);
+
+            when(produtoRepository.existsById(produto.getCodigo())).thenReturn(false);
+
+            var response = produtoController.updateProduto(produto);
+
+            assertEquals(HttpStatus.NOT_FOUND, response.getStatusCode());
+        }
+
+        @Test
+        @DisplayName("PUT /produtos - Bad Request")
+        void whenUpdateProduto_givenNullProduto_thenReturnBadRequest() {
+            when(validaProduto.camposSaoInvalidos(isNull())).thenReturn(true);
+
+            var response = produtoController.updateProduto(null);
 
             assertEquals(HttpStatus.BAD_REQUEST, response.getStatusCode());
         }
