@@ -9,7 +9,7 @@ import jakarta.persistence.Id;
 public class Produto {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int codigo;
+    private Long codigo;
     private String nome;
     private String descricao;
     private Double preco;
@@ -22,12 +22,8 @@ public class Produto {
         this.preco = preco;
     }
 
-    public int getCodigo() {
+    public Long getCodigo() {
         return codigo;
-    }
-
-    public void setCodigo(int codigo) {
-        this.codigo = codigo;
     }
 
     public String getNome() {
@@ -52,5 +48,15 @@ public class Produto {
 
     public void setPreco(Double preco) {
         this.preco = preco;
+    }
+
+    @Override
+    public String toString() {
+        return "Produto{" +
+                "codigo=" + codigo +
+                ", nome='" + nome + '\'' +
+                ", descricao='" + descricao + '\'' +
+                ", preco=" + preco +
+                '}';
     }
 }
