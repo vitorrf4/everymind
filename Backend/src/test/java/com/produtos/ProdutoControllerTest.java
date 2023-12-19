@@ -148,5 +148,31 @@ public class ProdutoControllerTest {
         }
     }
 
+    @Nested
+    class DeleteEndpoints {
+
+        @Test
+        @DisplayName("DELETE /produtos - No Content")
+        void whenDeleteProduto_thenReturnNoContent() {
+            Produto produto = new Produto("nome alterado", "desc alterada", 20.0);
+            ReflectionTestUtils.setField(produto, "codigo", 1L);
+
+            when(produtoRepository.findById(produto.getCodigo())).thenReturn(Optional.of(produto));
+
+            var response = produtoController.deleteProduto(1L);
+
+            assertEquals(HttpStatus.NO_CONTENT, response.getStatusCode());
+        }
+
+        @Test
+        @DisplayName("DELETE /produtos - Not Found")
+        void whenDeleteProduto_givenInexistentProduto_thenReturnNotFound() {
+            when(produtoRepository.existsById(1L)).thenReturn(false);
+
+            var response = produtoController.deleteProduto(1L);
+
+            assertEquals(HttpStatus.NOT_FOUND, response.getStatusCode());
+        }
+    }
 
 }
