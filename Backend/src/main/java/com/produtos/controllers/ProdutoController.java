@@ -4,7 +4,6 @@ import com.produtos.models.Produto;
 import com.produtos.models.ValidaProduto;
 import com.produtos.repositories.ProdutoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.net.URI;
@@ -15,10 +14,12 @@ import java.util.List;
 @RequestMapping("/produtos")
 public class ProdutoController {
     private final ProdutoRepository repository;
+    private final ValidaProduto validaProduto;
 
     @Autowired
-    public ProdutoController(ProdutoRepository repository) {
+    public ProdutoController(ProdutoRepository repository, ValidaProduto validaProduto) {
         this.repository = repository;
+        this.validaProduto = validaProduto;
     }
 
     @GetMapping
@@ -36,7 +37,7 @@ public class ProdutoController {
 
     @PostMapping
     public ResponseEntity<Produto> createProduto(@RequestBody Produto produto) {
-        if (ValidaProduto.camposSaoInvalidos(produto))
+        if (validaProduto.camposSaoInvalidos(produto))
             return ResponseEntity.badRequest().build();
 
         Produto savedProduto = repository.save(produto);
@@ -48,7 +49,7 @@ public class ProdutoController {
 
     @PutMapping
     public ResponseEntity<Produto> updateProduto(@RequestBody Produto produto) {
-        if (produto.getCodigo() == null || ValidaProduto.camposSaoInvalidos(produto))
+        if (validaProduto.camposSaoInvalidos(produto) || produto.getCodigo() == null )
             return ResponseEntity.badRequest().build();
 
         if (!repository.existsById(produto.getCodigo()))
