@@ -5,8 +5,7 @@
 !**/src/test/**/target/
 */.idea
 .idea
-frontend
-
+frontend/node_modules
 
 ### IntelliJ IDEA ###
 .idea/modules.xml
@@ -51,7 +50,6 @@ build/
 /bazel-out
 
 # Node
-/node_modules
 npm-debug.log
 yarn-error.log
 
