@@ -14,6 +14,11 @@ export class ListaComponent {
     this.produtosService.listarTodos().subscribe(res => {
       console.log(res);
       this.produtos = res;
+      this.ordernarProdutosPorMaisRecente();
     });
+  }
+
+  ordernarProdutosPorMaisRecente() {
+    this.produtos.sort((a, b) => b.codigo - a.codigo);
   }
 }
