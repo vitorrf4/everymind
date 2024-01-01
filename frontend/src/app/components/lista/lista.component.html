@@ -6,7 +6,7 @@
       <p>Descricao: {{produto.descricao}}</p>
       <p>Preço: {{produto.preco | currency : "BRL"}}</p>
 
-      <button id="button-atualizar">Atualizar</button>
+      <button id="button-atualizar" (click)="atualizarProduto(produto)">Atualizar</button>
       <button id="button-deletar" (click)="deletarProduto(produto.codigo, index)">Deletar</button>
     </li>
   </ul>

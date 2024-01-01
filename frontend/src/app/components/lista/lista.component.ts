@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import {Produto} from "../../models/produto";
 import {ProdutosService} from "../../services/produtos.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-lista',
@@ -10,11 +11,16 @@ import {ProdutosService} from "../../services/produtos.service";
 export class ListaComponent {
   produtos : Produto[] = [];
 
-  constructor(private produtosService: ProdutosService) {
+  constructor(private produtosService: ProdutosService,
+              private router: Router) {
     this.produtosService.listarTodos().subscribe(res => {
       this.produtos = res;
       this.ordernarProdutosPorMaisRecente();
     });
+  }
+
+  atualizarProduto(produto: Produto) {
+    this.router.navigate(["/cadastro"], {state: produto} ).then();
   }
 
   deletarProduto(id: number, index: number) {
