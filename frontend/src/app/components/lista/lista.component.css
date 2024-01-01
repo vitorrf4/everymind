@@ -1,0 +1,27 @@
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+li {
+  align-items: center;
+  margin-bottom: 20px;
+  padding: 10px;
+  border: 1px solid #ddd;
+}
+
+#button-atualizar {
+  background-color: royalblue;
+}
+
+#button-atualizar:hover {
+  background-color: #002ab9;
+}
+
+#button-deletar {
+  background-color: red;
+}
+
+#button-deletar:hover {
+  background-color: #a80000;
+}
