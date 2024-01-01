@@ -1,18 +1,14 @@
 <form [formGroup]="formProduto" (ngSubmit)="cadastrar()">
-  <div class="form-outline ">
-    <label class="form-label">Nome</label>
-    <input type="text" class="form-control form-control" formControlName="nome" required/>
-  </div>
+  <label>Nome</label>
+  <input type="text" formControlName="nome"/>
 
-  <div class="form-outline">
-    <label class="form-label">Descrição</label>
-    <input type="text" class="form-control form-control" formControlName="descricao" required />
-  </div>
+  <label>Descrição</label>
+  <input type="text" formControlName="descricao" id="input-descricao"/>
 
-  <div class="form-outline">
-    <label class="form-label">Preço</label>
-    <input type="number" class="form-control form-control" formControlName="preco" required />
-  </div>
+  <label>Preço</label>
+  <input type="number" formControlName="preco"/>
 
-  <button>Cadastrar</button>
+  <br>
+
+  <button>Salvar</button>
 </form>
