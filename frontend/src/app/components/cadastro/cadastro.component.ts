@@ -35,7 +35,9 @@ export class CadastroComponent {
         alert("Produto atualizado com sucesso");
         this.router.navigateByUrl("lista").then();
       },
-      error: err => console.log(err)
+      error: err => {
+        alert("Falha no sistema, tente novamente mais tarde");
+        console.log(err);}
     });
   }
 
@@ -56,7 +58,10 @@ export class CadastroComponent {
         alert("Produto cadastrado com sucesso");
         this.router.navigateByUrl("lista").then();
       },
-      error: err => console.log(err)
+      error: err => {
+        alert("Falha no sistema, tente novamente mais tarde");
+        console.log(err);
+      }
     });
   }
 

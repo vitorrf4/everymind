@@ -19,6 +19,10 @@ export class ListaComponent {
     });
   }
 
+  ordernarProdutosPorMaisRecente() {
+    this.produtos.sort((a, b) => b.codigo - a.codigo);
+  }
+
   atualizarProduto(produto: Produto) {
     this.router.navigate(["/cadastro"], {state: produto} ).then();
   }
@@ -29,11 +33,10 @@ export class ListaComponent {
         alert(`Produto ${id} deletado`);
         this.produtos.splice(index, 1);
       },
-      error: err => console.log(err)
+      error: err => {
+        alert("Falha no sistema, tente novamente mais tarde");
+        console.log(err);}
     })
   }
 
-  ordernarProdutosPorMaisRecente() {
-    this.produtos.sort((a, b) => b.codigo - a.codigo);
-  }
 }
