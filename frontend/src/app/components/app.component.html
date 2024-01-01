@@ -1,31 +1,34 @@
-<h1>Task Manager</h1>
+<h1>Nunes Sports</h1>
 
-<form method="post">
-  <label for="title">Title</label>
-  <input type="text" id="title" placeholder="Add title">
-  <br>
-  <label for="description">Description</label>
-  <input type="text" id="description" placeholder="Add description">
-</form>
-<button onclick="">Save</button>
+<header>
+  <button routerLink="/lista">Lista de Produtos</button>
+  <button routerLink="/cadastro">Novo Produto</button>
+</header>
 
-<hr>
+<router-outlet></router-outlet>
+<!--<form [formGroup]="formProduto" (ngSubmit)="cadastrar()">-->
+<!--  <div class="form-outline ">-->
+<!--    <label class="form-label">Nome</label>-->
+<!--    <input type="text" class="form-control form-control" formControlName="nome" required/>-->
+<!--  </div>-->
 
-<table>
-  <tr>
-    <td>
-      <button onclick="" id="all_tasks_btn">All</button>
-    </td>
-    <td>
-      <button onclick="" id="pending_tasks_btn">Pending</button>
-    </td>
-    <td>
-      <button onclick="" id="completed_tasks_btn">Completed</button>
-    </td>
-  </tr>
-</table>
+<!--  <div class="form-outline">-->
+<!--    <label class="form-label">Descrição</label>-->
+<!--    <input type="text" class="form-control form-control" formControlName="descricao" required />-->
+<!--  </div>-->
 
-<h2 id="h2_div_title"></h2>
-<div id="task_list">
-  <ul id="task_ul"> </ul>
-</div>
+<!--  <div class="form-outline">-->
+<!--    <label class="form-label">Preço</label>-->
+<!--    <input type="number" class="form-control form-control" formControlName="preco" required />-->
+<!--  </div>-->
+
+<!--  <button>Cadastrar</button>-->
+<!--</form>-->
+
+<!--<hr>-->
+
+<!--<div>-->
+<!--  <ul *ngFor="let produto of produtos">-->
+<!--    <li>Nome: {{produto.nome}} | Descricao: {{produto.descricao}} | Preço: {{produto.preco}}</li>-->
+<!--  </ul>-->
+<!--</div>-->
