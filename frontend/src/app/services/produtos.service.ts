@@ -15,7 +15,7 @@ export class ProdutosService {
     return this.http.get<Produto[]>(`${this.apiURL}/produtos`);
   }
 
-  listarPorId(id: string) {
+  listarPorId(id: number) {
     return this.http.get<Produto>(`${this.apiURL}/produtos/${id}`);
   }
 
@@ -27,7 +27,7 @@ export class ProdutosService {
     return this.http.put(`${this.apiURL}/produtos`, produto);
   }
 
-  deletar(id: string) {
+  deletar(id: number) {
     return this.http.delete(`${this.apiURL}/produtos/${id}`);
   }
 }
