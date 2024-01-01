@@ -12,7 +12,6 @@ export class ListaComponent {
 
   constructor(private produtosService: ProdutosService) {
     this.produtosService.listarTodos().subscribe(res => {
-      console.log(res);
       this.produtos = res;
       this.ordernarProdutosPorMaisRecente();
     });

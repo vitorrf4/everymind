@@ -4,8 +4,7 @@
       <p>Código: {{produto.codigo}}</p>
       <p>Nome: {{produto.nome}}</p>
       <p>Descricao: {{produto.descricao}}</p>
-<!--  TODO: add currency pipe    -->
-      <p>Preço: {{produto.preco}}</p>
+      <p>Preço: {{produto.preco | currency : "BRL"}}</p>
 
       <button id="button-atualizar">Atualizar</button>
       <button id="button-deletar" (click)="deletarProduto(produto.codigo, index)">Deletar</button>
