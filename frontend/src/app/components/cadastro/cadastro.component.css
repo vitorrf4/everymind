@@ -1,7 +1,7 @@
 input[type=number] {
-  width: 9%;
+  width: 15%;
 }
 
-#input-descricao {
+#descricao {
   width: 70%;
 }

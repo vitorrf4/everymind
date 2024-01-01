@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import {FormControl, FormGroup} from "@angular/forms";
 import {ProdutosService} from "../../services/produtos.service";
 import {Router} from "@angular/router";
+import {Produto} from "../../models/produto";
 
 @Component({
   selector: 'app-cadastro',
@@ -10,20 +11,45 @@ import {Router} from "@angular/router";
 })
 export class CadastroComponent {
   formProduto! : FormGroup;
+  id : number = 0;
 
   constructor(private produtosService: ProdutosService,
               private router: Router) {
+    // verifica se um id foi mandado junto com a pagina
+    if (history.state.codigo) {
+      this.id = history.state.codigo;
+    }
+
     this.formProduto = new FormGroup<any>({
-      nome: new FormControl(null),
-      descricao: new FormControl(null),
-      preco: new FormControl(null),
+      nome: new FormControl(history.state.nome || null),
+      descricao: new FormControl(history.state.descricao || null),
+      preco: new FormControl(history.state.preco || null),
+    });
+  }
+
+  atualizarProduto(produto : Produto) {
+    produto.codigo = this.id;
+
+    this.produtosService.atualizar(produto).subscribe({
+      next: ()  => {
+        alert("Produto atualizado com sucesso");
+        this.router.navigateByUrl("lista").then();
+      },
+      error: err => console.log(err)
     });
   }
 
   cadastrarProduto() {
-    if (!this.formEstaValido()) return;
+    if (!this.formEstaValido()) {
+      return;
+    }
 
     const produto = this.formProduto.value;
+
+    if (this.id) {
+      this.atualizarProduto(produto);
+      return;
+    }
 
     this.produtosService.cadastrar(produto).subscribe({
       next: ()  => {
