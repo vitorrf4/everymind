@@ -1,13 +1,14 @@
 <div>
   <ul>
-    <li *ngFor="let produto of produtos">
+    <li *ngFor="let produto of produtos; let index = index">
       <p>Código: {{produto.codigo}}</p>
       <p>Nome: {{produto.nome}}</p>
       <p>Descricao: {{produto.descricao}}</p>
+<!--  TODO: add currency pipe    -->
       <p>Preço: {{produto.preco}}</p>
 
       <button id="button-atualizar">Atualizar</button>
-      <button id="button-deletar">Deletar</button>
+      <button id="button-deletar" (click)="deletarProduto(produto.codigo, index)">Deletar</button>
     </li>
   </ul>
 </div>

@@ -18,6 +18,16 @@ export class ListaComponent {
     });
   }
 
+  deletarProduto(id: number, index: number) {
+    this.produtosService.deletar(id).subscribe({
+      next: () => {
+        alert(`Produto ${id} deletado`);
+        this.produtos.splice(index, 1);
+      },
+      error: err => console.log(err)
+    })
+  }
+
   ordernarProdutosPorMaisRecente() {
     this.produtos.sort((a, b) => b.codigo - a.codigo);
   }
