@@ -1,15 +1,15 @@
 export class Produto {
-  private _id : number = 0;
+  private _codigo : number = 0;
   private _nome : string = "";
   private _descricao : string = "";
   private _preco : number = 0.0;
 
-  get id(): number {
-    return this._id;
+  get codigo(): number {
+    return this._codigo;
   }
 
-  set id(value: number) {
-    this._id = value;
+  set codigo(value: number) {
+    this._codigo = value;
   }
 
   get nome(): string {
