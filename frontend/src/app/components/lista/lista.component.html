@@ -1,3 +1,7 @@
+<div *ngIf="produtos.length <= 0">
+  <h2>Nenhum produto cadastrado</h2>
+</div>
+
 <div>
   <ul>
     <li *ngFor="let produto of produtos; let index = index">
