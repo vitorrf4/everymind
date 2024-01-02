@@ -23,8 +23,8 @@ export class ListaComponent {
     this.produtos.sort((a, b) => b.codigo - a.codigo);
   }
 
-  atualizarProduto(produto: Produto) {
-    this.router.navigate(["/cadastro"], {state: produto} ).then();
+  async atualizarProduto(produto: Produto) {
+    await this.router.navigate(["/cadastro"], {state: produto});
   }
 
   deletarProduto(id: number, index: number) {
@@ -35,7 +35,8 @@ export class ListaComponent {
       },
       error: err => {
         alert("Falha no sistema, tente novamente mais tarde");
-        console.log(err);}
+        console.log(err);
+      }
     })
   }
 

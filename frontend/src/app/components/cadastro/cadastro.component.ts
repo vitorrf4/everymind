@@ -31,9 +31,9 @@ export class CadastroComponent {
     produto.codigo = this.id;
 
     this.produtosService.atualizar(produto).subscribe({
-      next: ()  => {
+      next: async () => {
         alert("Produto atualizado com sucesso");
-        this.router.navigateByUrl("lista").then();
+        await this.router.navigateByUrl("lista");
       },
       error: err => {
         alert("Falha no sistema, tente novamente mais tarde");
@@ -54,9 +54,9 @@ export class CadastroComponent {
     }
 
     this.produtosService.cadastrar(produto).subscribe({
-      next: ()  => {
+      next: async () => {
         alert("Produto cadastrado com sucesso");
-        this.router.navigateByUrl("lista").then();
+        await this.router.navigateByUrl("lista");
       },
       error: err => {
         alert("Falha no sistema, tente novamente mais tarde");
